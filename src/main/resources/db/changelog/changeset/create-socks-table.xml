@@ -1,0 +1,22 @@
+<databaseChangeLog
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+
+    <changeSet id="1" author="Georgy Zemskov">
+        <createTable tableName="socks">
+            <column name="id" type ="int" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false" unique="true"  />
+            </column>
+            <column name="color" type = "varchar(100)" />
+            <column name="quantity" type = "int">
+            <constraints nullable="false" />
+            </column>
+            <column name="cotton_part" type = "int">
+                <constraints nullable="false" />
+            </column>
+        </createTable>
+        <sql> ALTER TABLE socks ADD CHECK (quantity &gt;= 0) </sql>
+        <sql>ALTER TABLE socks ADD CHECK (cotton_part &gt;= 0 AND cotton_part &lt;= 100)</sql>
+    </changeSet>
+</databaseChangeLog>
